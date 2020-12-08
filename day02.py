@@ -10,21 +10,16 @@ with open("input/day02.txt") as puzzle_input:
 
 
 def part_1():
-    return sum(
-        1
-        if int(password[0]) <= password[3].count(password[2]) <= int(password[1])
-        else 0
-        for password in passwords
-    )
+    return len([p for p in passwords if int(p[0]) <= p[3].count(p[2]) <= int(p[1])])
 
 
 def part_2():
-    return sum(
-        1
-        if (password[3][int(password[0]) - 1] == password[2])
-        != (password[3][int(password[1]) - 1] == password[2])
-        else 0
-        for password in passwords
+    return len(
+        [
+            p
+            for p in passwords
+            if (p[3][int(p[0]) - 1] == p[2]) != (p[3][int(p[1]) - 1] == p[2])
+        ]
     )
 
 
