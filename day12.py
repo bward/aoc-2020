@@ -32,16 +32,13 @@ def part_1():
 
 def part_2():
     ship = 0
-    facing = 0 + 1j
     waypoint = 1 + 10j
 
     for action, value in instructions:
         if action in ["N", "E", "S", "W"]:
-            waypoint, _ = directions[action](waypoint, value, facing)
-        elif action in ["L", "R"]:
-            _, waypoint = directions[action](ship, value, waypoint)
-        elif action == "F":
-            ship += waypoint * value
+            waypoint, ship = directions[action](waypoint, value, ship)
+        else:
+            ship, waypoint = directions[action](ship, value, waypoint)
 
     return int(abs(ship.real) + abs(ship.imag))
 
