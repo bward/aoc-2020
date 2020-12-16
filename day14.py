@@ -14,10 +14,9 @@ with open("input/day14.txt") as puzzle_input:
 
 
 def _apply_mask(mask, value):
-    binary = bin(value)[2:]
-    padded = "0" * (36 - len(binary)) + binary
+    binary = bin(value)[2:].rjust(36, "0")
 
-    return int("".join(v if m == "X" else m for v, m in zip(padded, mask)), 2)
+    return int("".join(v if m == "X" else m for v, m in zip(binary, mask)), 2)
 
 
 def part_1():
@@ -36,14 +35,13 @@ def part_1():
 def _apply_memory_mask(mask, value):
     xs = mask.count("X")
     floating_iters = [iter(i) for i in itertools.product(*[[0, 1]] * xs)]
-    binary = bin(value)[2:]
-    padded = "0" * (36 - len(binary)) + binary
+    binary = bin(value)[2:].rjust(36, "0")
 
     return [
         int(
             "".join(
                 v if m == "0" else m if m == "1" else str(next(floating_bits))
-                for v, m in zip(padded, mask)
+                for v, m in zip(binary, mask)
             ),
             2,
         )
