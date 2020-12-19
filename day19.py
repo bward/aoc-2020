@@ -43,15 +43,13 @@ def part_2():
     def _matches(message):
         chunks = [message[i : i + 8] for i in range(0, len(message), 8)]
         first_31 = next((i for i, c in enumerate(chunks) if c in rule_31), None)
-        if (
+
+        return (
             first_31
             and len(chunks) / 2 < first_31
             and all(c in rule_42 for c in chunks[:first_31])
             and all(c in rule_31 for c in chunks[first_31:])
-        ):
-            return True
-
-        return False
+        )
 
     return len([m for m in messages if _matches(m)])
 
