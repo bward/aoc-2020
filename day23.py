@@ -41,13 +41,13 @@ def part_1():
     for _ in range(100):
         cup = _move_cups(linked_cups, cup)
 
-    out = 1
-    final = ""
+    ptr = 1
+    out = ""
     for _ in range(8):
-        out = linked_cups[out][1]
-        final += str(out)
+        ptr = linked_cups[ptr][1]
+        out += str(ptr)
 
-    return final
+    return out
 
 
 def part_2():
